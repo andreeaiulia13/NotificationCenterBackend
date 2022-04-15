@@ -20,9 +20,9 @@ class Api::V1::SessionsController < Api::V1::BaseController
       render(json: {
         user: {
           id: user.id,
-          email: user.email
+          email: user.email,
+          admin: user.admin
         }, 
-
         tokens: {
           access_token: access_token.token,
           token_type: 'bearer',
@@ -31,7 +31,6 @@ class Api::V1::SessionsController < Api::V1::BaseController
           created_at: access_token.created_at.to_time.to_i
         }
       })
-      
     else
       render_error_message(:invalid_credentials)
     end

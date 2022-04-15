@@ -13,9 +13,9 @@ class User < ApplicationRecord
   def self.authenticate(email, password)
     user = User.find_for_authentication(email: email)
     user && user.valid_password?(password) ? user : nil
-	end
+  end
 
-	def tokens
+  def tokens
     access_token = Doorkeeper::AccessToken.create!(
       resource_owner_id: id,
       expires_in: Doorkeeper.configuration.access_token_expires_in,
@@ -23,6 +23,6 @@ class User < ApplicationRecord
     )
     Doorkeeper::OAuth::TokenResponse.new(access_token).body
 
-		access_token
+    access_token
   end
 end

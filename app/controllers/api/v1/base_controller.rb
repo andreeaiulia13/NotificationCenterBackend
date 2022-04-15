@@ -1,7 +1,7 @@
 class Api::V1::BaseController < ActionController::API
   include  ActionController::MimeResponds
 	
-	before_action :authorize_request!
+  before_action :authorize_request!
 
   protected
 
@@ -31,6 +31,6 @@ class Api::V1::BaseController < ActionController::API
     end
 
     def current_user
-			@current_user = User.find(doorkeeper_token[:resource_owner_id])
+      @current_user = User.find(doorkeeper_token[:resource_owner_id])
     end
 end
