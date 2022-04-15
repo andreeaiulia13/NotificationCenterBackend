@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::SessionsController < Api::V1::BaseController
+  include Api::V1::SessionsControllerDoc
   skip_before_action :authorize_request!, only: %i[index create]
 
   def index

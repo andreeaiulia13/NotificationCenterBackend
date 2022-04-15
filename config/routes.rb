@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :users
+  apipie
   use_doorkeeper
 
+  devise_for :users
+  
   use_doorkeeper scope: 'api/v1/sessions' do
     skip_controllers :applications, :authorizations, :authorized_applications, :token_info
   end
 
-  #API
+  resources :users, only: :index
+  root 'users#index'
+
   namespace :api do
     namespace :v1 do
       resources :sessions, only: [:create, :index] do
