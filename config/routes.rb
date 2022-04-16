@@ -16,8 +16,9 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create, :index] do
         delete '/', action: :destroy, on: :collection
       end
-
-      resources :notifications
+      namespace :admin do
+        resources :notifications
+      end
     end
   end
       
