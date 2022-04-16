@@ -17,5 +17,5 @@ User.where(admin: false).each do |client|
     title: 'Etiam iaculis ipsum id felis iaculis pharetra. Pellentesque gravida leo nec mollis feugiat.',
     description: "Fusce tempus, leo vitae tempor porta, nisl tellus sodales ligula, et elementum nisl risus eget odio. Maecenas molestie tellus ultrices orci ultricies accumsan. Curabitur sollicitudin tempor erat ut porta. Phasellus a lobortis est. Integer malesuada congue elit blandit dignissim.",
     user_id: client.id
-	)
+  )
 end
