@@ -20,6 +20,15 @@ class Api::V1::Admin::NotificationsController < Api::V1::BaseController
     render json: 'Notifications were generated successfully!'
 	end
 
+
+  def read_notifications 
+    render json: Notification.where(read: true).order(created_at: :desc)
+  end
+
+  def unread_notifications 
+    render json: Notification.where(read: false).order(created_at: :desc)
+  end
+
   private
 
     def notification_params

@@ -16,8 +16,14 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create, :index] do
         delete '/', action: :destroy, on: :collection
       end
+
+      resources :notifications
+
       namespace :admin do
-        resources :notifications
+        resources :notifications do 
+          get :read_notifications, on: :collection
+          get :unread_notifications, on: :collection
+        end
       end
     end
   end
