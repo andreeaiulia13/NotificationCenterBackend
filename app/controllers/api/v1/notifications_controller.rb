@@ -1,4 +1,6 @@
 class Api::V1::NotificationsController < Api::V1::BaseController
+	include Api::V1::NotificationsControllerDoc
+
   def index
     return render json: nil if current_user.notifications.blank?
 
@@ -11,7 +13,7 @@ class Api::V1::NotificationsController < Api::V1::BaseController
     return render json: { error: 'Permission denied.' }, status: :forbidden unless notification.user == current_user
    
     mark_as_read(notification) if notification.read == false
-    render json: notification.description
+    render json: { description: notification.description }
   end
 
   def destroy
@@ -20,7 +22,7 @@ class Api::V1::NotificationsController < Api::V1::BaseController
     return render json: { error: 'Permission denied.' }, status: :forbidden unless notification.user == current_user
 
     Notification.find(params[:id]).destroy
-    render json: 'Notification was successfully deleted!'
+    render json: { message: 'Notification was successfully deleted!' }
   end
 
   private

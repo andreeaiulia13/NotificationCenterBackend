@@ -1,0 +1,323 @@
+{
+  "v1-sessions#create": [
+    {
+      "title": "Valid request",
+      "verb": "POST",
+      "path": "/api/v1/sessions",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "email=admin@gmail.com&password=admin@1",
+      "response_data": {
+        "user": {
+          "id": 4,
+          "email": "admin@gmail.com",
+          "admin": true
+        },
+        "tokens": {
+          "access_token": "f85bab0882c4851012d0d50f794d832704df560ee2cac86a7eded042a41e2603",
+          "token_type": "bearer",
+          "expires_in": 1800,
+          "refresh_token": "3ac58424cd6a5298ef6720e10258c37ae41d3a0f1fd35bdf51cd59d864cb4bac",
+          "created_at": 1650118332
+				}
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+		{
+      "title": "Invalid credentials",
+      "verb": "POST",
+      "path": "/api/v1/sessions",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "email=admin@gmail.com&password=admin@2",
+      "response_data": {
+        "message": "Invalid email or password",
+        "code": "invalid_credentials"
+      },
+      "code": 422,
+      "show_in_doc": 1,
+      "recorded": true
+		}
+  ],
+	"v1-sessions#index": [
+    {
+	    "title": "Get the current user",
+	    "verb": "GET",
+      "path": "/api/v1/sessions",
+	    "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "id": 5,
+        "email": "andreea@gmail.com",
+        "admin": false
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    } 
+  ],
+  "v1-admin-notifications#create": [
+    {
+      "title": "Create a notifications",
+      "verb": "POST",
+      "path": "/api/v1/admin/notifications",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "notification[title]=Title&notification[description]=description&emails=john@gmail.com, andreea@gmail.com",
+      "response_data": {
+        "message": "Notifications were generated successfully!"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "title": "Title is missing",
+      "verb": "POST",
+      "path": "/api/v1/admin/notifications",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "notification[description]=description&emails=john@gmail.com, andreea@gmail.com",
+      "response_data": {
+        "error": "Title is missing"
+      },
+      "code": 400,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "title": "Description is missing",
+      "verb": "POST",
+      "path": "/api/v1/admin/notifications",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "notification[title]=Title&emails=john@gmail.com, andreea@gmail.com",
+      "response_data": {
+        "error": "Description is missing"
+      },
+      "code": 400,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "title": "Client is missing",
+      "verb": "POST",
+      "path": "/api/v1/admin/notifications",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "notification[title]=Title&notification[description]=description",
+      "response_data": {
+        "error": "Client is missing"
+      },
+      "code": 400,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "title": "Wrong email",
+      "verb": "POST",
+      "path": "/api/v1/admin/notifications",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "notification[title]=Title&notification[description]=description&emails=sam@gmail.com",
+      "response_data": {
+        "error": "There is no client with this email: sam@gmail.com. Please try again."
+      },
+      "code": 400,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "v1-admin-notifications#read_notifications": [
+    {
+      "title": "Get all the read notifications",
+      "verb": "GET",
+      "path": "/api/v1/admin/notifications/read_notifications",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": [
+        {
+          "id": 33,
+          "user_id": 5,
+          "title": "Title",
+          "description": "description",
+          "read": true,
+          "read_at": "2022-04-16T14:51:37.027Z",
+          "created_at": "2022-04-16T14:38:04.187Z",
+          "updated_at": "2022-04-16T14:51:37.028Z"
+        },
+        {
+          "id": 23,
+          "user_id": 5,
+          "title": "Etiam iaculis ipsum id felis iaculis pharetra. Pellentesque gravida leo nec mollis feugiat.",
+          "description": "Fusce tempus, leo vitae tempor porta, nisl tellus sodales ligula, et elementum nisl risus eget odio. Maecenas molestie tellus ultrices orci ultricies accumsan. Curabitur sollicitudin tempor erat ut porta. Phasellus a lobortis est. Integer malesuada congue elit blandit dignissim.",
+          "read": true,
+          "read_at": "2022-04-16T11:56:54.909Z",
+          "created_at": "2022-04-16T11:56:03.369Z",
+          "updated_at": "2022-04-16T11:56:54.910Z"
+        }
+      ],
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "v1-admin-notifications#unread_notifications": [
+    {
+      "title": "Get all the unread notifications",
+      "verb": "GET",
+      "path": "/api/v1/admin/notifications/unread_notifications",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": [
+        {
+            "id": 34,
+            "user_id": 6,
+            "title": "Title",
+            "description": "description",
+            "read": false,
+            "read_at": null,
+            "created_at": "2022-04-16T14:38:20.483Z",
+            "updated_at": "2022-04-16T14:38:20.483Z"
+        },
+        {
+            "id": 32,
+            "user_id": 6,
+            "title": "Title",
+            "description": "description",
+            "read": false,
+            "read_at": null,
+            "created_at": "2022-04-16T14:38:04.180Z",
+            "updated_at": "2022-04-16T14:38:04.180Z"
+        },
+        {
+            "id": 31,
+            "user_id": 5,
+            "title": "Title",
+            "description": "description",
+            "read": false,
+            "read_at": null,
+            "created_at": "2022-04-16T14:37:27.150Z",
+            "updated_at": "2022-04-16T14:37:27.150Z"
+        }
+      ],
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "v1-notifications#index": [
+    {
+      "title": "Get all the client's notifications",
+      "verb": "GET",
+      "path": "/api/v1/notifications/unread_notifications",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": [
+        {
+            "id": 35,
+            "title": "Title",
+            "read": true,
+            "created_at": "2022-04-16T14:38:20.487Z"
+        },
+        {
+            "id": 33,
+            "title": "Title",
+            "read": true,
+            "created_at": "2022-04-16T14:38:04.187Z"
+        },
+        {
+            "id": 31,
+            "title": "Title",
+            "read": false,
+            "created_at": "2022-04-16T14:37:27.150Z"
+        },
+        {
+            "id": 29,
+            "title": "Title",
+            "read": false,
+            "created_at": "2022-04-16T14:37:00.070Z"
+        },
+        {
+            "id": 23,
+            "title": "Etiam iaculis ipsum id felis iaculis pharetra. Pellentesque gravida leo nec mollis feugiat.",
+            "read": true,
+            "created_at": "2022-04-16T11:56:03.369Z"
+        },
+        {
+            "id": 22,
+            "title": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
+            "read": false,
+            "created_at": "2022-04-16T11:56:03.366Z"
+        }
+      ],
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "v1-notifications#show": [
+    {
+      "title": "Show a notification",
+      "verb": "GET",
+      "path": "/api/v1/notifications/unread_notifications/:id",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "33",
+      "response_data": {
+         "description": "description"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "v1-notifications#destroy": [
+    {
+      "title": "Delete a notification",
+      "verb": "DELETE",
+      "path": "/api/v1/notifications/unread_notifications/:id",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": "33",
+      "response_data": {
+        "message": "Notification was successfully deleted!"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ]
+}

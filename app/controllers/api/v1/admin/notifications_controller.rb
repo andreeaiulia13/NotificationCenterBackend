@@ -1,4 +1,6 @@
 class Api::V1::Admin::NotificationsController < Api::V1::BaseController
+  include Api::V1::Admin::NotificationsControllerDoc
+
   before_action :check_authority!
 
   def create
@@ -17,7 +19,7 @@ class Api::V1::Admin::NotificationsController < Api::V1::BaseController
 
     notifications.each { |notification| notification.save! }
 
-    render json: 'Notifications were generated successfully!'
+    render json: { message: 'Notifications were generated successfully!' }
 	end
 
 
