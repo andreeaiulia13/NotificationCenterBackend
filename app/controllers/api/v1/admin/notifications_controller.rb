@@ -22,7 +22,7 @@ class Api::V1::Admin::NotificationsController < Api::V1::BaseController
 
 
   def read_notifications 
-    render json: Notification.where(read: true).order(created_at: :desc)
+    render json: Notification.where(read: true).order(read_at: :desc)
   end
 
   def unread_notifications 

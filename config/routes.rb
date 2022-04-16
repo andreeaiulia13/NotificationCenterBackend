@@ -13,14 +13,14 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :sessions, only: [:create, :index] do
+      resources :sessions, only: %i[create index] do
         delete '/', action: :destroy, on: :collection
       end
 
-      resources :notifications
+      resources :notifications, only: %i[index show destroy]
 
       namespace :admin do
-        resources :notifications do 
+        resources :notifications, only: :create do 
           get :read_notifications, on: :collection
           get :unread_notifications, on: :collection
         end

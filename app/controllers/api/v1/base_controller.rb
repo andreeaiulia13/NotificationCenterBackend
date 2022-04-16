@@ -33,7 +33,7 @@ class Api::V1::BaseController < ActionController::API
       @current_user = User.find(doorkeeper_token[:resource_owner_id])
     end
 
-		def admin
+    def admin
       User.find_by(admin: true)
-		end
+    end
 end
