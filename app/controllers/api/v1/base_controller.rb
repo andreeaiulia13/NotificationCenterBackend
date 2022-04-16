@@ -1,6 +1,5 @@
 class Api::V1::BaseController < ActionController::API
   include  ActionController::MimeResponds
-	
   before_action :authorize_request!
 
   protected
@@ -33,4 +32,8 @@ class Api::V1::BaseController < ActionController::API
     def current_user
       @current_user = User.find(doorkeeper_token[:resource_owner_id])
     end
+
+		def check_authority!
+		  render json: { error: 'Permission denied.' } if current_user.admin == false
+		end
 end
