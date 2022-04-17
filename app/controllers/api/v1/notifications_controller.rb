@@ -1,5 +1,5 @@
 class Api::V1::NotificationsController < Api::V1::BaseController
-	include Api::V1::NotificationsControllerDoc
+  include Api::V1::NotificationsControllerDoc
 
   def index
     return render json: nil if current_user.notifications.blank?

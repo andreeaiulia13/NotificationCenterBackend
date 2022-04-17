@@ -6,11 +6,11 @@ module Api::V1::Admin::NotificationsControllerDoc
   api :POST, '/v1/admin/notifications', 'Create a notification for clients'
   param_group :authorization, Api::V1::ApipieDefinitions
   param :title, String, required: true
-	param :description, String, required: true
-	param :emails, String, required: true
-	def create; end
+  param :description, String, required: true
+  param :emails, String, required: true
+  def create; end
 
-	api :GET, '/v1/admin/notifications/read_notifications', 'Shows all the read notifications from the latest to the oldest.'
+  api :GET, '/v1/admin/notifications/read_notifications', 'Shows all the read notifications from the latest to the oldest.'
   param_group :authorization, Api::V1::ApipieDefinitions
   def read_notifications; end
 

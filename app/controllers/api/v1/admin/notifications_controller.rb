@@ -20,7 +20,7 @@ class Api::V1::Admin::NotificationsController < Api::V1::BaseController
     notifications.each { |notification| notification.save! }
 
     render json: { message: 'Notifications were generated successfully!' }
-	end
+  end
 
 
   def read_notifications 

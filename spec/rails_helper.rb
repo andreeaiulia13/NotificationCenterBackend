@@ -7,6 +7,7 @@ require File.expand_path('../config/environment', __dir__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 require 'support/request_spec_helper'
+require 'support/session_helper'
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -16,6 +17,7 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   config.include RequestSpecHelper, type: :request
+  config.include SessionHelper
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.filter_run show_in_doc: true if ENV['APIPIE_RECORD']
