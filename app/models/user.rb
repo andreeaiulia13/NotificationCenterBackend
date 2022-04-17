@@ -9,7 +9,6 @@ class User < ApplicationRecord
             format: { with: VALID_EMAIL_REGEX }, uniqueness: true
   validates :password, presence: true, length: { minimum: 5 }
 
-
   def self.authenticate(email, password)
     user = User.find_for_authentication(email: email)
     user && user.valid_password?(password) ? user : nil

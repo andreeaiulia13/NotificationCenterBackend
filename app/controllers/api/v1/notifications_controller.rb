@@ -27,7 +27,7 @@ class Api::V1::NotificationsController < Api::V1::BaseController
 
   private
 
-  def mark_as_read(notification)
-    notification.update(read: true, read_at: DateTime.now)
-  end
+    def mark_as_read(notification)
+      notification.update(read: true, read_at: DateTime.now)
+    end
 end

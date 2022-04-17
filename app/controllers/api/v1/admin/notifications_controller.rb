@@ -17,7 +17,7 @@ class Api::V1::Admin::NotificationsController < Api::V1::BaseController
       notifications << Notification.new(notification_params.merge(user_id: user.id))
     end
 
-    notifications.each { |notification| notification.save! }
+    notifications.each { |notification| notification.save }
 
     render json: { message: 'Notifications were generated successfully!' }
   end

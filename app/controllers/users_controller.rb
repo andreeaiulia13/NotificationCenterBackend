@@ -1,3 +1,3 @@
 class UsersController < ActionController::Base
-	def index; end
+  def index; end
 end
