@@ -1,24 +1,15 @@
-# README
+# The backend for a notification center
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+  * Ruby version: 2.2.5
+  * Rails version: 5.2.7
+  * Database: Postgresql12
 
-Things you may want to cover:
+Gems used:
+  * devise
+  * doorkeeper
+  * apipie-rails
+  * rspec-rails
 
-* Ruby version
+The API documentation can be found at this link: http://localhost:3000/apipie after you run the server.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Run rails db:seed in order to populate your database.
