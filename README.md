@@ -1,4 +1,4 @@
-# The backend for a notification center
+# Notification Center Backend
 
   * Ruby version: 2.2.5
   * Rails version: 5.2.7
